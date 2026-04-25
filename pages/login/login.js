@@ -54,5 +54,10 @@ export class LoginPage {
        await this.clickLoginBtn();
     }
 
-    
+    async invalidLoginErrorValidation(errorMessage){
+        await expect(this.invalidLoginMessage).toContainText(errorMessage);
+        const error = await this.invalidLoginMessage.innerText();
+        console.log(error);
+    }
+
 }
