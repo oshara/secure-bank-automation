@@ -15,6 +15,8 @@ export class LoginPage {
 
         //invalid login alert message
         this.invalidLoginMessage = page.locator('[id="login-alert"]');
+
+
     }
 
     async navigateToSite(){
@@ -60,4 +62,16 @@ export class LoginPage {
         console.log(error);
     }
 
+    async togglePasswordVisibility(password){ 
+         await this.navigateToSite();
+        await this.enterPassword(password);  
+        await expect(this.passwordInputField).toHaveAttribute('type','password');
+        console.log(this.passwordInputField);
+        await this.passwordVisibilityToggle.click();
+        await expect(this.passwordInputField).toHaveAttribute('type','text');
+        console.log(this.passwordInputField);
+
+    }
+
+   
 }
