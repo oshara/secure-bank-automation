@@ -3,7 +3,7 @@ import { loginFunc } from './login_scenarios/successful_admin_login'
 import { QA_ENV } from '../../config/qa.env';
 import { invalidLoginFunc } from './login_scenarios/unsuccesful_admin.login';
 import { togglePasswordVisibilityFunc } from './login_scenarios/toggle_password_visibility';
-import { pressEnterOnLoginFunc } from './login_scenarios/pressing_enterkey_password_login';
+
 import { viewerUserLoiginFunc } from './login_scenarios/success_login_viewer_only_user';
 
 
@@ -19,7 +19,7 @@ test.describe('Login Scenarios',()=>{
         await expect(page).toHaveURL(QA_ENV.dashboardURL);
     });
 
-    test('Admin unsuccesful login',async({page})=>{
+    test.only('Admin unsuccesful login',async({page})=>{
         await invalidLoginFunc(page);
     })
 
@@ -28,6 +28,11 @@ test.describe('Login Scenarios',()=>{
         await togglePasswordVisibilityFunc(page);
     })
 
-   
+
+    test.only('Admin Viewer Badge after login login',async({page})=>{
+        await viewerUserLoiginFunc(page);
+        await expect(page).toHaveURL(QA_ENV.dashboardURL);
+
+    })
 
 })

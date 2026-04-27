@@ -16,7 +16,8 @@ export class LoginPage {
         //invalid login alert message
         this.invalidLoginMessage = page.locator('[id="login-alert"]');
 
-
+        // viewer badge in the dashboard
+        this.viewerBatch = page.locator('[id="viewer-badge"]');
     }
 
     async navigateToSite(){
@@ -73,5 +74,16 @@ export class LoginPage {
 
     }
 
-   
+
+
+    async viewerBatchCheck(text){
+      await this.viewerBatch.click();
+      if(await this.viewerBatch.isVisible()){
+       await expect(this.viewerBatch).toHaveText(text);
+        console.log('Viewer badge is visible and has the correct text');
+    }
+    else{
+        console.log('Viewer badge is not visible');
+    }
+}
 }

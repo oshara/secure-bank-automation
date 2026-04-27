@@ -10,7 +10,12 @@ export const QA_ENV = {
         ivalidUsername:'invalidUser',
         invalidPassword:'invalidPass',
 
+        viewerUsername: 'viewer',
+        viewerPassword: 'viewer123',
+
         errorMessage:'Invalid username or password. Please try again.',
+
+        viewerBatchText:'Read-only'
     }
 
 
