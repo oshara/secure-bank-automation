@@ -74,6 +74,13 @@ export class LoginPage {
 
     }
 
+    async pressEnterKeyOnPassword(username,password){
+       await this.navigateToSite();
+       await this.userNameInputField.fill(username);
+       await this.passwordInputField.fill(password);
+
+       await this.passwordInputField.press('Enter');
+    }
 
 
     async viewerBatchCheck(text){
