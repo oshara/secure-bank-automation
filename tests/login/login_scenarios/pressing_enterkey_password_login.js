@@ -4,8 +4,7 @@ import { loginFunc } from "./successful_admin_login"
 
 export const pressEnterOnLoginFunc = async(page) =>{
 
-    await loginFunc(page);
-    
+
     const LoginObj = new LoginPage(page);
     await LoginObj.pressEnterKeyOnPassword(QA_ENV.credentials.username,QA_ENV.credentials.password);
 
