@@ -19,22 +19,22 @@ test.describe('Login Scenarios',()=>{
         await expect(page).toHaveURL(QA_ENV.dashboardURL);
     });
 
-    test.only('Admin unsuccesful login',async({page})=>{
+    test('Admin unsuccesful login',async({page})=>{
         await invalidLoginFunc(page);
     })
 
 
-    test.only('Toggle Password Visibility',async({page})=>{
+    test('Toggle Password Visibility',async({page})=>{
         await togglePasswordVisibilityFunc(page);
     })
 
-    test.only('Verifying when user can login by clicking the enter key after entering the password',async({page})=>{
+    test('Verifying when user can login by clicking the enter key after entering the password',async({page})=>{
 
         await pressEnterOnLoginFunc(page);
          await expect(page).toHaveURL(QA_ENV.dashboardURL);
     })
 
-    test.only('Admin Viewer Badge after login login',async({page})=>{
+    test('Admin Viewer Badge after login login',async({page})=>{
         await viewerUserLoiginFunc(page);
         await expect(page).toHaveURL(QA_ENV.dashboardURL);
 
