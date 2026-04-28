@@ -30,7 +30,7 @@ jobs:
 
       # ✅ Run tests in headless mode
       - name: Run Playwright tests
-        run: npx playwright test --headless
+        run: npx playwright test
 
       # ✅ Upload report (super useful for debugging failures)
       - name: Upload Playwright Report
