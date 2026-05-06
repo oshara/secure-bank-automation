@@ -1,4 +1,5 @@
 import { expect } from "@playwright/test";
+import { navigateToAccountMenu } from "../../tests/navigations/navigation";
 
 export class DashboardPage {
     constructor(page){
@@ -8,6 +9,7 @@ export class DashboardPage {
 
         // Total Balance Card
         this.totalBalanceCard = page.locator("[data-testid='total-balance-card']");
+        this.balanceAmountValue = page.locator("[data-testid='total-balance']");
 
         // Active Account Card
         this.activeAccountCard = page.locator("[data-testid='total-balance-card']");
@@ -27,4 +29,16 @@ export class DashboardPage {
            await expect(this.activeAccountCard).toContainText(/\d+/);
            await expect(this.totalTransactionsCard).toHaveText(/\d+/);
         }
+
+
+    async statCardValueMatch(){
+          await expect(this.dashboardContainer).toHaveAttribute('data-loading','true');
+
+          const totalAmountValue = await this.balanceAmountValue.innerText();
+          await navigateToAccountMenu();
+
+          
+          
+
+    }
 }
