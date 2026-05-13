@@ -1,5 +1,6 @@
 import { expect } from "@playwright/test";
 import { navigateToAccountMenu } from "../../tests/navigations/navigation";
+import { baseURL,dashboard } from "../../config/qa.env";
 
 export class DashboardPage {
     constructor(page){
@@ -17,7 +18,17 @@ export class DashboardPage {
         //Total Transacations Card
         this.totalTransactionsCard = page.locator("[data-testid='transactions-count-card']");
 
+        // Quick Add Account Button
+        this.addAccountButton = page.locator('[id="add-account-link"]');
+
+        // Add Account Modal
+        this.addAccountModal = page.locator('[id="account-modal"]');      
         
+        // Quck Add Transaction Button
+        this.addNewTransactionButton = page.locator("[data-testid='quick-new-transaction']");
+
+        // Add Transaction Modal
+        this.addTransactionModal = page.locator('[id="transaction-modal"]');
     }
 
     async skelatonLoadingStateValidation(){
@@ -36,9 +47,23 @@ export class DashboardPage {
 
           const totalAmountValue = await this.balanceAmountValue.innerText();
           await navigateToAccountMenu();
+     
 
-          
-          
+    }
+
+    async quickActionsNavigationCheck(){
+        await this.addAccountButton.click();
+        await this.page.waitForLoadState('networkidle');
+        await expect(this.page.url()).toContain('https://qaplayground.com/bank/accounts?action=add');
+        await expect(this.addAccountModal).toBeVisible();
+        await this.page.goBack();
+        await this.page.waitForLoadState('networkidle');
+        await this.addNewTransactionButton.click();
+        await this.page.waitForLoadState('networkidle');
+        await expect(this.page.url()).toContain('https://qaplayground.com/bank/transactions?action=add');
+        await expect(this.addTransactionModal).toBeVisible();
+
+
 
     }
 }
