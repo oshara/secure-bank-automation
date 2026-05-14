@@ -1,6 +1,6 @@
 import { expect } from "@playwright/test";
 import { navigateToAccountMenu } from "../../tests/navigations/navigation";
-import { baseURL,dashboard } from "../../config/qa.env";
+import { QA_ENV } from "../../config/qa.env";
 
 export class DashboardPage {
     constructor(page){
@@ -58,9 +58,11 @@ export class DashboardPage {
         await expect(this.addAccountModal).toBeVisible();
         await this.page.goBack();
         await this.page.waitForLoadState('networkidle');
+        await expect(this.page).toHaveURL("https://qaplayground.com/bank/dashboard");
         await this.addNewTransactionButton.click();
+        await this.page.waitForTimeout(4000);
         await this.page.waitForLoadState('networkidle');
-        await expect(this.page.url()).toContain('https://qaplayground.com/bank/transactions?action=add');
+        await expect(this.page.url()).toContain('https://qaplayground.com/bank/transactions?action=new');
         await expect(this.addTransactionModal).toBeVisible();
 
 
